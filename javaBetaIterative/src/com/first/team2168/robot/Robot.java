@@ -1,6 +1,6 @@
 package com.first.team2168.robot;
 
-import com.first.team2168.robot.sensors.TCPCameraSensor;
+import com.first.team2168.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 	static AnalogChannel AI3;
 	static AnalogChannel AI4;
 	
-	static TCPCameraSensor cam;
+	static Vision cam;
 	
 	static ConsolePrinter printer;
 	
@@ -94,8 +94,8 @@ public class Robot extends IterativeRobot {
 		//Inital All Other IO Pins for smartDashboard
 		initHardware();
 		
-		cam = new TCPCameraSensor(1111, 200);
-		cam.start();
+		//init Cam Server
+		cam = Vision.getInstance();
 
 		printer = new ConsolePrinter(200);
 		printer.startThread();

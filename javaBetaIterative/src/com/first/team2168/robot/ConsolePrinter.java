@@ -1,7 +1,9 @@
 package com.first.team2168.robot;
 
 import java.util.TimerTask;
+
 import com.first.team2168.robot.Robot;
+import com.first.team2168.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -39,35 +41,10 @@ public class ConsolePrinter {
 		SmartDashboard.putNumber("AI3", Robot.AI3.getValue() );
 		SmartDashboard.putNumber("AI4", Robot.AI4.getValue() );
 		
-		SmartDashboard.putData("CompressorRelay", Robot.CompressorRelay);
-
-		
-		
-//    	SmartDashboard.putNumber("Left Encoder Distance",Drivetrain.getInstance().getLeftEncoderDistance());
-//    	SmartDashboard.putNumber("Right Encoder Distance:",Drivetrain.getInstance().getRightEncoderDistance());
-//    	SmartDashboard.putNumber("GYRO Angle:", Drivetrain.getInstance().getGyroAngle());
-//    	SmartDashboard.putNumber("Winch Distance:",Winch.getInstance().getWinchEncoderDistance());
-//    	SmartDashboard.putNumber("Winch Speed:",Winch.getInstance().getWinchSpeed());
-//		SmartDashboard.putBoolean("Winch Limit:", Winch.getInstance().isCatapultRetracted());
-//		SmartDashboard.putBoolean("Intake Limit:", IntakePosition.getInstance().getIntakeLimitSwitch());
-//		SmartDashboard.putNumber("Pot Voltage:", Winch.getInstance().getWinchPotentiometerVoltage());	
-//		SmartDashboard.putNumber("Catapult Angle", Winch.getInstance().getCatapultAngle());
-//		
-//		SmartDashboard.putString("AutoName", Robot.getAutoName());
-//		
-//		
-//		SmartDashboard.putNumber("Intake Ball presence", Winch.getInstance().getIntakeBallSensorVoltage());
-//		SmartDashboard.putNumber("Winch ball presence", Winch.getInstance().getWinchBallSensorVoltage());
-//		
-//		
-//		SmartDashboard.putBoolean("Camera Status", Vision.getInstance().isCameraConnected());
-//		SmartDashboard.putBoolean("Bone Status", Vision.getInstance().isBoneConnected());
-//		SmartDashboard.putBoolean("Processing Status", Vision.getInstance().isProcessingTreadRunning());
-//		SmartDashboard.putBoolean("HotGoal Status", Vision.getInstance().isHotinView());
-//		
-//		SmartDashboard.putBoolean("Truss Status", Tusks.getInstance().isTrussShot());
-//		SmartDashboard.putBoolean("Wall Status", Tusks.getInstance().isShortRangeShot());
-//		SmartDashboard.putBoolean("Far Status", Tusks.getInstance().isLongRangeShot());
+		SmartDashboard.putBoolean("Camera Status", Vision.getInstance().isCameraConnected());
+		SmartDashboard.putBoolean("Bone Status", Vision.getInstance().isBoneConnected());
+		SmartDashboard.putBoolean("Processing Status", Vision.getInstance().isProcessingTreadRunning());
+		SmartDashboard.putBoolean("HotGoal Status", Vision.getInstance().isHotinView());
 
 
 	}

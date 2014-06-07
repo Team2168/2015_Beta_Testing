@@ -1,6 +1,6 @@
 package com.first.team2168.robot;
 
-import com.first.team2168.robot.subsystems.Vision;
+import com.first.team2168.robot.sensors.TCPCameraSensor;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Talon;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -60,16 +59,20 @@ public class Robot extends IterativeRobot {
 	static AnalogChannel AI3;
 	static AnalogChannel AI4;
 	
-	static Vision cam;
+	static TCPCameraSensor cam;
 	
 	static ConsolePrinter printer;
+	
+	static String cmdAngleShooter;
+	static String l_cmdAngleShooter;
+
 	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-
+		
 		// Initialize joysticks
 		driver = new Joystick(1);
 		operator = new Joystick(2);
@@ -94,11 +97,16 @@ public class Robot extends IterativeRobot {
 		//Inital All Other IO Pins for smartDashboard
 		initHardware();
 		
-		//init Cam Server
-		cam = Vision.getInstance();
+		cam = new TCPCameraSensor(1111, 200);
+		cam.start();
 
 		printer = new ConsolePrinter(200);
 		printer.startThread();
+		
+		cmdAngleShooter = "down";
+		l_cmdAngleShooter = "down";
+	
+		
 		
 	}
 
@@ -126,8 +134,13 @@ public class Robot extends IterativeRobot {
 
 		if (operator.getRawButton(6)) {
 			shooterAngle.set(Value.kForward);
+			l_cmdAngleShooter = "kReverse";
+			cmdAngleShooter = "kForward";
+			
 		} else if (operator.getRawButton(5)) {
 			shooterAngle.set(Value.kReverse);
+			l_cmdAngleShooter = "kForward";
+			cmdAngleShooter = "kReverse";
 		}
 
 		if (operator.getRawButton(2)) {
@@ -148,6 +161,8 @@ public class Robot extends IterativeRobot {
 		} else {
 			CompressorRelay.set(Value.kOff);
 		}
+		
+		 
 	}
 
 	/**

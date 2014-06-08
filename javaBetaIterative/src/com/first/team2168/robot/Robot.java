@@ -121,7 +121,7 @@ public class Robot extends IterativeRobot {
 		
 		cmdAngleShooter = "down";
 		l_cmdAngleShooter = "down";
-	
+
 		m_pcm = new PCMCompressor();
 		m_pcm.setClosedLoopControl(true);
 		
@@ -192,7 +192,7 @@ public class Robot extends IterativeRobot {
 		} else if (operator.getRawButton(4)) {
 			r1.set(Relay.Value.kOff);
 		}
-		
+
 		if(isOperatorControl()){
 			if(!m_pcm.getPressureSwitchValue()){
 				System.out.println("Low pressure - turning on the compressor");

@@ -1,4 +1,4 @@
-package frc2168_2013.commands.Auto;
+package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc2168_2013.CommandBaseRobot;

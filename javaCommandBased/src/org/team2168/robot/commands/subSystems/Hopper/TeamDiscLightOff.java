@@ -1,6 +1,6 @@
-package frc2168_2013.commands.subSystems.Hopper;
+package org.team2168.robot.commands.subSystems.Hopper;
 
-import frc2168_2013.commands.CommandBase;
+import org.team2168.robot.commands.CommandBase;
 
 /**
  * A command to turn on the team disc light.

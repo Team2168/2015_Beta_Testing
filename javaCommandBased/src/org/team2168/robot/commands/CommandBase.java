@@ -1,16 +1,16 @@
-package frc2168_2013.commands;
+package org.team2168.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc2168_2013.OI;
-import frc2168_2013.subsystems.Drivetrain;
-import frc2168_2013.subsystems.Hanger;
-import frc2168_2013.subsystems.Hopper;
-import frc2168_2013.subsystems.IntakePosition;
-import frc2168_2013.subsystems.IntakeSpeed;
-import frc2168_2013.subsystems.LightSaber;
-import frc2168_2013.subsystems.ShooterAngle;
-import frc2168_2013.subsystems.ShooterWheel;
+import org.team2168.robot.OI;
+import org.team2168.robot.subsystems.Drivetrain;
+import org.team2168.robot.subsystems.Hanger;
+import org.team2168.robot.subsystems.Hopper;
+import org.team2168.robot.subsystems.IntakePosition;
+import org.team2168.robot.subsystems.IntakeSpeed;
+import org.team2168.robot.subsystems.LightSaber;
+import org.team2168.robot.subsystems.ShooterAngle;
+import org.team2168.robot.subsystems.ShooterWheel;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.

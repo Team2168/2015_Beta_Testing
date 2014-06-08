@@ -1,7 +1,7 @@
-package frc2168_2013.commands.Auto;
+package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc2168_2013.CommandBaseRobot;
+import org.team2168.robot.CommandBaseRobot;
 
 /**
  * The auto command. Kicks off a number of different auto modes, depending on

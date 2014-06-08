@@ -1,7 +1,7 @@
-package frc2168_2013.commands.subSystems.Hopper;
+package org.team2168.robot.commands.subSystems.Hopper;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc2168_2013.commands.Sleep;
+import org.team2168.robot.commands.Sleep;
 
 /**
  * Auto command. Sits still and shoots discs from close range at the three point goal.

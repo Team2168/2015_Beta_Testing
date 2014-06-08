@@ -1,12 +1,12 @@
 package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc2168_2013.CommandBaseRobot;
-import frc2168_2013.commands.Sleep;
-import frc2168_2013.commands.subSystems.Hopper.ShootSingleDisc;
-import frc2168_2013.commands.subSystems.ShooterAngle.ShooterAngleExtend;
-import frc2168_2013.commands.subSystems.ShooterWheel.DriveShooterWithConstant;
-import frc2168_2013.commands.subSystems.ShooterWheel.PID_ShooterPause;
+import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.commands.Sleep;
+import org.team2168.robot.commands.subSystems.Hopper.ShootSingleDisc;
+import org.team2168.robot.commands.subSystems.ShooterAngle.ShooterAngleExtend;
+import org.team2168.robot.commands.subSystems.ShooterWheel.DriveShooterWithConstant;
+import org.team2168.robot.commands.subSystems.ShooterWheel.PID_ShooterPause;
 
 /**
  * Auto command. Sits still and shoots discs from close range at the three point goal.

@@ -7,7 +7,7 @@ import org.team2168.robot.OI;
 import org.team2168.robot.RobotMap;
 import org.team2168.robot.PIDController.Controller.PIDSpeed;
 import org.team2168.robot.PIDController.Sensors.AverageEncoder;
-import org.team2168.robot.PIDController.TCPStream.TCPsocketSender;
+//import org.team2168.robot.PIDController.TCPStream.TCPsocketSender;
 import org.team2168.robot.commands.subSystems.ShooterWheel.DriveShooterWithJoystick;
 
 public class ShooterWheel extends Subsystem {
@@ -21,9 +21,9 @@ public class ShooterWheel extends Subsystem {
 	
 	public PIDSpeed shooterWheelSpeedControllerAft;
 	public PIDSpeed shooterWheelSpeedControllerFwd;
-	
-	TCPsocketSender TCPshooterSpeedControllerAft;
-	TCPsocketSender TCPshooterSpeedControllerFwd;
+//	
+//	TCPsocketSender TCPshooterSpeedControllerAft;
+//	TCPsocketSender TCPshooterSpeedControllerFwd;
 
 	
 	public ShooterWheel() {
@@ -61,12 +61,12 @@ public class ShooterWheel extends Subsystem {
 		shooterWheelSpeedControllerFwd.startThread();		
 		
 		//initialized TCP Server, ONLY FOR DEBUDDING, REMOVE FOR COMPETITION
-		TCPshooterSpeedControllerAft = new TCPsocketSender(RobotMap.TCPServerShooterSpeedAft, shooterWheelSpeedControllerAft);
-		TCPshooterSpeedControllerAft.start();
+//		TCPshooterSpeedControllerAft = new TCPsocketSender(RobotMap.TCPServerShooterSpeedAft, shooterWheelSpeedControllerAft);
+//		TCPshooterSpeedControllerAft.start();
 
 		//initialized TCP Server, ONLY FOR DEBUDDING, REMOVE FOR COMPETITION
-		TCPshooterSpeedControllerFwd = new TCPsocketSender(RobotMap.TCPServerShooterSpeedFwd, shooterWheelSpeedControllerFwd);
-		TCPshooterSpeedControllerFwd.start();
+//		TCPshooterSpeedControllerFwd = new TCPsocketSender(RobotMap.TCPServerShooterSpeedFwd, shooterWheelSpeedControllerFwd);
+//		TCPshooterSpeedControllerFwd.start();
 		
 	}
 	

@@ -10,234 +10,338 @@ import org.team2168.robot.utils.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
-import org.team2168.robot.PIDController.TCPStream.SplitStrings;
-
-
-
 /**
+ * This class was re-written from JavaME to JavaSE
+ * 
+ * The TCPCameraSensor class is used to grab data from a TCP socket and provide
+ * it for use on an FRC robot. The intended use of this class is to retrieve
+ * data from a beagleBone running Vision. This class uses 3 threads, one which
+ * listens for incoming connections, a second which retrieves data from the
+ * BeagleBone, and a thrid which can be used to send data to the beaglebone.
  * 
  * @author HarrilalEngineering
- *
- * The TCPCameraSensor class is used to grab data from a TCP socket and provide it for use on an FRC robot. The intended 
- * use of this class is to retrieve data from a beagleBone running Vision. This class uses 3 threads, one which listens for incoming connections, a second which retrieves data from the BeagleBone, and a thrid which can be used to send data to the beaglebone.
  */
 
-public class TCPCameraSensor
-{
+public class TCPCameraSensor {
 	private int port;
 	private String messageOut;
 	private byte[] buf;
-	private String[] dataReceived;
+	private volatile String[] dataReceived;
 	private StringBuffer sb = new StringBuffer();
-	private boolean enable;
-	private boolean init;
+	private volatile boolean sendEnable;
+	private volatile boolean recvEnable;
+	
+	private volatile boolean clientConnected;
+
+	private DriverStation ds;
 
 	// A TCP Socket Connection
-	private ServerSocketConnection conn = null;
+	private ServerSocket listener = null;
 
-	//TCP Socket Stream
-	private StreamConnection sc = null;
+	// TCP Socket Stream connection
+	private Socket client = null;
 
-	//Threads
+	// Threads
 	private Thread t1;
 	private Thread t2;
 	private Thread t3;
 
-	//Address Variable
+	// Address Variable
 	private String addressIn;
-	
+
 	private long requestPeriod;
+	
+	private int size;
 
-
-/**
- * 
- * @param port which is to be used to Listen for incoming TCP connections on the FRC bot.
- */
-	public TCPCameraSensor(int port, long requestPeriod)
-	{
+	/**
+	 * 
+	 * @param port
+	 *            which is to be used to Listen for incoming TCP connections on
+	 *            the FRC bot.
+	 */
+	public TCPCameraSensor(int port, long requestPeriod) {
 		this.requestPeriod = requestPeriod;
 
-		//initialize data messageOut
-		dataReceived = new String[3];
+
+		size = 6;
+		
+		// initialize data messageOut 
+		dataReceived = new String[size];
+
 		dataReceived[0] = "0";
 		dataReceived[1] = "0";
 		dataReceived[2] = "0";
+		dataReceived[3] = "0";
+		dataReceived[4] = "0";
+		dataReceived[5] = "0";
 
-
-		//setup socket to listen on
+		// setup socket to listen on
 		this.port = port;
-		addressIn = "socket://:"+ port;
+		
+		//addressIn = "socket://:" + port;
 
-		//make this true if you want to send data to the beaglebone as well
-		enable = false;
+		ds = DriverStation.getInstance();
 
-		//Opens a socket to listen for incoming connections
-		try {
-			conn = (ServerSocketConnection) Connector.open(addressIn);
-
-			System.out.println("Listening on: "
-					+ conn.getLocalAddress() + " on port: "
-					+ conn.getLocalPort());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
 	}
 
-	public void start()
-	{
-		t3 = new Thread(new Runnable()
-		{
-		
-			public void run()
-			{
+	public void start() {
+		t3 = new Thread(new Runnable() {
 
-				try
-				{
+			public void run() {
 
-					// wait for a client to connect, this blocks until a connect is made
-					sc = conn.acceptAndOpen();
+				try {
+
+					// Opens a socket to listen for incoming connections
+					try {
+						
+						listener = new ServerSocket(port);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					// wait for a client to connect, this blocks until a connect
+					// is made
+					clientConnected = false;
+					System.out.println("Listening on port: " + listener.getLocalPort());
+					
+					client = listener.accept();
+					
 					System.out.println("Client Connected");
+					clientConnected = true;
+					
+
+					// make this true if you want to send data to the beaglebone
+					// as well
+					recvEnable = true;
 
 					listener();
 					sender();
 
-				} catch (IOException e)
-				{
-					e.printStackTrace();
+				} catch (IOException e) {
 
-				}	
+				}
 			}
 		}
 
-				);
-
-
+		);
 
 		t3.start();
 	}
 
-	private void listener()
-	{
+	private void listener() {
 
-		t1 = new Thread(new Runnable()
-		{
-			
-			public void run()
-			{
-				try
-				{
-					InputStream is = null;
-					is = sc.openInputStream();
+		t1 = new Thread(new Runnable() {
+
+			public void run() {
+				try {
+					DataInputStream is = new DataInputStream(client.getInputStream());
+					
 					int ch = 0;
 
-					//read data until newline character is reached
-					while ((ch = is.read()) != -1)
-					{
-						if ((char) ch != '\n')			
+					// read data until newline character is reached
+					while ((ch = is.read()) != -1) {
+						if ((char) ch != '\n')
 							sb.append((char) ch);
-						else
-						{
-							//print data received to the screen
-							System.out.println(sb.toString());
+						else {
+							// print data received to the screen
 
-							//split data into array
-							dataReceived = SplitStrings.Split(sb.toString(), ","); // splits
+							// split data into array	
+							dataReceived = Util.split(sb.toString(), ","); // splits
+
 							
-							//create new buffer
+
+						//	System.out.println("Match Start: " + isMatchStart()+", " + "Valid Frame: " + isValidFrame()+", " + "Hot: " + isHotInView()+", " + "LorR: " + LeftOrRightHot()+", " + "dist: " + dataReceived[4]+", " + "Count: " + dataReceived[5]);
+
+
+
+							// create new buffer
 							sb = new StringBuffer();
 						}
 					}
-				} 
-				catch (IOException x)
-				{
+				} catch (IOException x) {
 					x.printStackTrace();
 				}
 			}
 
 		}
 
-				);
+		);
 
 		t1.start();
-
 	}
 
-	private void sender()
-	{
+	private void sender() {
+		t2 = new Thread(new Runnable() {
 
-		t2 = new Thread(new Runnable()
-		{
-			
-			public void run()
-			{
+			public void run() {
+				try {
+				DataOutputStream os = new DataOutputStream(client.getOutputStream());
+				int count = 0;
+				
 
-				OutputStream os = null;
-				try
-				{
-					os = sc.openOutputStream();
+					while (recvEnable) {
+						// we want to send if match has started to camera
+						int matchStart = 0;
 
-					while (true)
-					{
+						if (ds.isEnabled())
+							matchStart = 1;
 
-						if (enable)
-						{
-							messageOut = "something to send to bone";
-	
-							buf = messageOut.getBytes();
+						messageOut = String.valueOf(matchStart) + " " + count
+								+ " \n";
 
-							try
-							{
-								os.write(buf);
-							}
-							catch(IOException e)
-							{
-								//e.printStackTrace();
-								System.out.println("Appears Client Closed the Connection");
-								enable=false;
+						//System.out.println("Sending Match Start: " + messageOut);
 
-								start();
-							}
+						buf = messageOut.getBytes("US_ASCII");
+
+						count++;
+
+						try {
+							os.write(buf);
+						} catch (IOException e) {
+							// e.printStackTrace();
+							System.out.println("Appears Client Closed "
+									+ "the Connection");
+
+							stopThreads();
+
+							// close streams
+							os.close();
+							client.close();
+							listener.close();
+
+							// restart server
+							start();
 
 						}
 
-						try
-						{
+						try {
 							Thread.sleep(requestPeriod);
-						} 
-						catch (InterruptedException e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();				
+						} catch (InterruptedException e) {
+							e.printStackTrace();
 						}
 					}
 
-
-				}
-				catch (IOException e)
-				{
-					// TODO Auto-generated catch block
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
 
 			}
 		}
 
-				);
+		);
 		t2.start();
-
 	}
 
 
-	public static void main(String args[])
-	{
+private void stopThreads()
+{
+	sendEnable = false;
+	recvEnable = false;
+}
 
-		TCPCameraSensor myCam = new TCPCameraSensor(1100,200);
-		myCam.start();
+public int getMessageLength()
+{
+	
+	return size;
+}
+
+public String[] getMessage()
+{
+
+	return dataReceived;
+}
+
+//These are specific to the game, modify for each year
+public boolean isMatchStart()
+{
+
+	int message = Integer.valueOf(dataReceived[0]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+	
+	
+}
+
+public boolean isValidFrame()
+{
+
+	int message = Integer.valueOf(dataReceived[1]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+	
+	
+}
+
+public boolean isHotInView()
+{
+	int message = Integer.valueOf(dataReceived[2]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+}
+
+public int LeftOrRightHot()
+{
+	return Integer.valueOf(dataReceived[5]).intValue();
+}
 
 
-	}
+public double getDitance()
+{
+	double dist = Double.valueOf(dataReceived[6]).doubleValue();
+	
+	if (Double.isNaN(dist) || Double.isInfinite(dist))
+		return 0.0;
+	else
+		return dist;
+	
+}
+
+public double getCount()
+{
+	int count = Integer.valueOf(dataReceived[7]).intValue();
+	
+	if (Double.isNaN(count) || Double.isInfinite(count))
+		return 0;
+	else
+		return count;
+	
+}
+
+public boolean isCameraConnected()
+{
+	int message = Integer.valueOf(dataReceived[3]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+	
+}
+
+public boolean isProcessingTreadRunning()
+{
+	int message = Integer.valueOf(dataReceived[4]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
 
 }
 
+public boolean isClientConnected()
+{
+	return clientConnected;
+
+}
+
+}

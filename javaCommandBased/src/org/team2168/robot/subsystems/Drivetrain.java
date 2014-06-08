@@ -10,7 +10,6 @@ import org.team2168.robot.RobotMap;
 import org.team2168.robot.PIDController.Controller.PIDPosition;
 import org.team2168.robot.PIDController.Controller.PIDSpeed;
 import org.team2168.robot.PIDController.Sensors.AverageEncoder;
-import org.team2168.robot.PIDController.TCPStream.TCPsocketSender;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveWithJoystick;
 
 public class Drivetrain extends Subsystem {
@@ -31,10 +30,10 @@ public class Drivetrain extends Subsystem {
 	public PIDSpeed leftSpeedController;
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
-	TCPsocketSender TCPrightPosController;
-	TCPsocketSender TCPrightSpeedController;
-	TCPsocketSender TCPleftPosController;
-	TCPsocketSender TCPleftSpeedController;
+//	TCPsocketSender TCPrightPosController;
+//	TCPsocketSender TCPrightSpeedController;
+//	TCPsocketSender TCPleftPosController;
+//	TCPsocketSender TCPleftSpeedController;
 
 	Talon rightTalonDriveMotor;
 	Talon leftTalonDriveMotor;
@@ -108,17 +107,17 @@ public class Drivetrain extends Subsystem {
     	leftPosController.startThread();
     	
     	//start TCP Servers for DEBUGING ONLY
-    	TCPrightPosController = new TCPsocketSender(RobotMap.TCPServerRightDrivetrainPos, rightPosController);
-    	TCPrightPosController.start();
-    	
-    	TCPrightSpeedController = new TCPsocketSender(RobotMap.TCPServerRightDrivetrainSpeed, rightSpeedController);
-    	TCPrightSpeedController.start();
-    	
-    	TCPleftPosController = new TCPsocketSender(RobotMap.TCPServerLeftDrivetrainPos, leftPosController);
-    	TCPleftPosController.start();
-    	
-    	TCPleftSpeedController = new TCPsocketSender(RobotMap.TCPServerLeftDrivetrainSpeed, leftSpeedController);
-    	TCPleftSpeedController.start();
+//    	TCPrightPosController = new TCPsocketSender(RobotMap.TCPServerRightDrivetrainPos, rightPosController);
+//    	TCPrightPosController.start();
+//    	
+//    	TCPrightSpeedController = new TCPsocketSender(RobotMap.TCPServerRightDrivetrainSpeed, rightSpeedController);
+//    	TCPrightSpeedController.start();
+//    	
+//    	TCPleftPosController = new TCPsocketSender(RobotMap.TCPServerLeftDrivetrainPos, leftPosController);
+//    	TCPleftPosController.start();
+//    	
+//    	TCPleftSpeedController = new TCPsocketSender(RobotMap.TCPServerLeftDrivetrainSpeed, leftSpeedController);
+//    	TCPleftSpeedController.start();
     	
     	turnSense = new Gyro(RobotMap.gyroChannel);
     	turnSense.setSensitivity(0.0070);

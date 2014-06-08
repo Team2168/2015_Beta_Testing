@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 import org.team2168.robot.PIDController.Sensors.PIDSensorInterface;
 import org.team2168.robot.PIDController.TCPStream.TCPMessageInterface;
-import org.team2168.robot.PIDController.TCPStream.TCPsocketSender;
 import org.team2168.robot.commands.subSystems.ShooterWheel.PID_SetAftWheelSpeed;
 import org.team2168.robot.commands.subSystems.ShooterWheel.PID_ShooterPause;
 
@@ -803,34 +802,34 @@ public class PIDSpeed implements TCPMessageInterface
 	
 	public synchronized void receiveJSON(String[] message)
 	{
-		//System.out.println("receive command");
-		try
-		{
-		this.pGain = Double.valueOf(message[0]).doubleValue();
-		this.iGain = Double.valueOf(message[1]).doubleValue();		
-		this.dGain = Double.valueOf(message[2]).doubleValue();
-		this.sp = Double.valueOf(message[3]).doubleValue();
-		this.maxPosOutput = Double.valueOf(message[5]).doubleValue();
-		this.maxNegOutput = Double.valueOf(message[6]).doubleValue();
-		this.minPosOutput = Double.valueOf(message[7]).doubleValue();
-		this.minNegOutput = Double.valueOf(message[8]).doubleValue();
-//		this.enDerivFilter = TCPsocketSender.strToBool(message[9]);
-		this.acceptErrorDiff = Double.valueOf(message[10]).doubleValue();
-//		setSIZE(Integer.valueOf(message[11]).intValue());
+//		//System.out.println("receive command");
+//		try
+//		{
+//		this.pGain = Double.valueOf(message[0]).doubleValue();
+//		this.iGain = Double.valueOf(message[1]).doubleValue();		
+//		this.dGain = Double.valueOf(message[2]).doubleValue();
+//		this.sp = Double.valueOf(message[3]).doubleValue();
+//		this.maxPosOutput = Double.valueOf(message[5]).doubleValue();
+//		this.maxNegOutput = Double.valueOf(message[6]).doubleValue();
+//		this.minPosOutput = Double.valueOf(message[7]).doubleValue();
+//		this.minNegOutput = Double.valueOf(message[8]).doubleValue();
+////		this.enDerivFilter = TCPsocketSender.strToBool(message[9]);
+//		this.acceptErrorDiff = Double.valueOf(message[10]).doubleValue();
+////		setSIZE(Integer.valueOf(message[11]).intValue());
+////		
+//		if(TCPsocketSender.strToBool(message[4]))
+//		{
+//		//	Enable();
+//		new PID_SetAftWheelSpeed(Double.valueOf(message[3]).doubleValue()).start();
 //		
-		if(TCPsocketSender.strToBool(message[4]))
-		{
-		//	Enable();
-		new PID_SetAftWheelSpeed(Double.valueOf(message[3]).doubleValue()).start();
-		
-		}//new PID_Drive(Double.valueOf(message[3]).doubleValue()).start();
-		else
-			new PID_ShooterPause().start();
-		}
-		catch (NumberFormatException e)
-		{
-			//System.out.println("Don't send empty values");
-		}
+//		}//new PID_Drive(Double.valueOf(message[3]).doubleValue()).start();
+//		else
+//			new PID_ShooterPause().start();
+//		}
+//		catch (NumberFormatException e)
+//		{
+//			//System.out.println("Don't send empty values");
+//		}
 		
 		
 		

@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc2168_2013;
+package org.team2168.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc2168_2013.commands.CommandBase;
-import frc2168_2013.commands.Auto.AutoSequencer;
-import frc2168_2013.commands.subSystems.DriveTrain.DriveDrivetrainTurn_Simple;
-import frc2168_2013.dashboard.CompetitionDashboard;
-import frc2168_2013.utils.BitRelay;
+import org.team2168.robot.commands.CommandBase;
+import org.team2168.robot.commands.Auto.AutoSequencer;
+import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainTurn_Simple;
+import org.team2168.robot.dashboard.CompetitionDashboard;
+import org.team2168.robot.utils.BitRelay;
 
 /**
  * The VM is configured to automatically run this class, and to call the

@@ -1,19 +1,19 @@
-package frc2168_2013.commands.Auto;
+package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc2168_2013.commands.Sleep;
-import frc2168_2013.commands.subSystems.DriveTrain.DriveDrivetrainStraight;
-import frc2168_2013.commands.subSystems.Hopper.ShootSingleDisc;
-import frc2168_2013.commands.subSystems.Intake.DriveIntakeConstant;
-import frc2168_2013.commands.subSystems.Intake.DriveIntakeTillFull;
-import frc2168_2013.commands.subSystems.Intake.DriveLeftTillEmpty;
-import frc2168_2013.commands.subSystems.Intake.DriveRightTillEmpty;
-import frc2168_2013.commands.subSystems.Intake.IntakeHopperPosition;
-import frc2168_2013.commands.subSystems.Intake.IntakeLoadPosition;
-import frc2168_2013.commands.subSystems.Intake.IntakeStowPosition;
-import frc2168_2013.commands.subSystems.ShooterAngle.ShooterAngleExtend;
-import frc2168_2013.commands.subSystems.ShooterAngle.ShooterAngleStow;
-import frc2168_2013.commands.subSystems.ShooterWheel.DriveShooterWithConstant;
+import org.team2168.robot.commands.Sleep;
+import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainStraight;
+import org.team2168.robot.commands.subSystems.Hopper.ShootSingleDisc;
+import org.team2168.robot.commands.subSystems.Intake.DriveIntakeConstant;
+import org.team2168.robot.commands.subSystems.Intake.DriveIntakeTillFull;
+import org.team2168.robot.commands.subSystems.Intake.DriveLeftTillEmpty;
+import org.team2168.robot.commands.subSystems.Intake.DriveRightTillEmpty;
+import org.team2168.robot.commands.subSystems.Intake.IntakeHopperPosition;
+import org.team2168.robot.commands.subSystems.Intake.IntakeLoadPosition;
+import org.team2168.robot.commands.subSystems.Intake.IntakeStowPosition;
+import org.team2168.robot.commands.subSystems.ShooterAngle.ShooterAngleExtend;
+import org.team2168.robot.commands.subSystems.ShooterAngle.ShooterAngleStow;
+import org.team2168.robot.commands.subSystems.ShooterWheel.DriveShooterWithConstant;
 
 /**
  * Auto command. Drives back to lower intake then drives forward; shoots two discs; 

@@ -1,6 +1,6 @@
-package frc2168_2013.commands.subSystems.Hanger;
+package org.team2168.robot.commands.subSystems.Hanger;
 
-import frc2168_2013.commands.CommandBase;
+import org.team2168.robot.commands.CommandBase;
 
 /**
  * A command to engage the hanger mechanism.

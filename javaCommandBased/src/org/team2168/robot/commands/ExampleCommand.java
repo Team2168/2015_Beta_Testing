@@ -1,4 +1,3 @@
-
 package org.team2168.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;

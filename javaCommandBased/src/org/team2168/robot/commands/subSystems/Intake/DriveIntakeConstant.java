@@ -2,9 +2,6 @@ package org.team2168.robot.commands.subSystems.Intake;
 
 import org.team2168.robot.commands.CommandBase;
 
-
-
-
 public class DriveIntakeConstant extends CommandBase {
 	
 	private double rightRollerSpeed;

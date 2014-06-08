@@ -1,7 +1,7 @@
 package org.team2168.robot;
 
 import edu.wpi.first.wpilibj.CounterBase;
-import frc2168_2013.PIDController.Sensors.AverageEncoder;
+import org.team2168.robot.PIDController.Sensors.AverageEncoder;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

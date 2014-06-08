@@ -6,8 +6,6 @@ import org.team2168.robot.OI;
 import org.team2168.robot.subsystems.Drivetrain;
 import org.team2168.robot.subsystems.Hanger;
 import org.team2168.robot.subsystems.Hopper;
-import org.team2168.robot.subsystems.IntakePosition;
-import org.team2168.robot.subsystems.IntakeSpeed;
 import org.team2168.robot.subsystems.LightSaber;
 import org.team2168.robot.subsystems.ShooterAngle;
 import org.team2168.robot.subsystems.ShooterWheel;
@@ -23,8 +21,8 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     // Create a single static instance of all of your subsystems
     public static Drivetrain     drivetrain = new Drivetrain();
-    public static IntakePosition  intakePos = new IntakePosition();
-    public static IntakeSpeed   intakeSpeed = new IntakeSpeed();
+//    public static IntakePosition  intakePos = new IntakePosition();
+//    public static IntakeSpeed   intakeSpeed = new IntakeSpeed();
     public static ShooterWheel shooterWheel = new ShooterWheel();
     public static ShooterAngle shooterAngle = new ShooterAngle();
     public static Hopper             hopper = new Hopper();

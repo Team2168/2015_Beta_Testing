@@ -10,10 +10,10 @@ import org.team2168.robot.RobotMap;
 public class Hopper extends Subsystem {
 
 	AlphaDoubleSolenoid actuator;
-	Relay teamDiscLight;
+//	Relay teamDiscLight;
 	
 	public Hopper() {
-		teamDiscLight = new Relay(RobotMap.teamDiscLight);
+//		teamDiscLight = new Relay(RobotMap.teamDiscLight);
 		
 		actuator = new AlphaDoubleSolenoid(RobotMap.hopperReload,
                 RobotMap.hopperFire);
@@ -44,15 +44,15 @@ public class Hopper extends Subsystem {
 	 /**
 	  * Turn on the team disc light indicator.
 	  */
-	 public void setDiscLightOn() {
-		 //Apply 12V to the + spike output, and gnd to the - spike output
-		 teamDiscLight.set(Relay.Value.kForward);
-	 }
-	 
-	 /**
-	  * Turn off the team disc light indicator.
-	  */
-	 public void setDiscLightOff() {
-		 teamDiscLight.set(Relay.Value.kOff);
-	 }
+//	 public void setDiscLightOn() {
+//		 //Apply 12V to the + spike output, and gnd to the - spike output
+//		 teamDiscLight.set(Relay.Value.kForward);
+//	 }
+//	 
+//	 /**
+//	  * Turn off the team disc light indicator.
+//	  */
+//	 public void setDiscLightOff() {
+//		 teamDiscLight.set(Relay.Value.kOff);
+//	 }
 }

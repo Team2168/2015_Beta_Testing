@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.microedition.io.Connector;
-import javax.microedition.io.ServerSocketConnection;
-import javax.microedition.io.StreamConnection;
-
+//import javax.microedition.io.Connector;
+//import javax.microedition.io.ServerSocketConnection;
+//import javax.microedition.io.StreamConnection;
+import java.net.ServerSocket;
 
 
 public class TCPsocketSender

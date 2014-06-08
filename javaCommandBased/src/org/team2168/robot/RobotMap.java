@@ -12,16 +12,16 @@ import org.team2168.robot.PIDController.Sensors.AverageEncoder;
 public class RobotMap {
 	
 	public final static boolean USE_TALONS_DRIVETRAIN = false;
-	public final static boolean USE_TALONS_SHOOTER = false;
+	public final static boolean USE_TALONS_SHOOTER = true;
 	
 	/****************************************************************
 	 *                       CRIO MAP                               *
 	 ****************************************************************/	
 	//PWM Channels////////////////////////////////////////////////////
-	public static final int leftDriveMotor  = 1;
-	public static final int rightDriveMotor = 2;
-	public static final int shooterMotorAft = 3;
-	public static final int shooterMotorFwd = 4;
+	public static final int leftDriveMotor  = 3;
+	public static final int rightDriveMotor = 4;
+	public static final int shooterMotorAft = 2;
+	public static final int shooterMotorFwd = 1;
 	public static final int intakeMotorR	= 5;
 	public static final int intakeMotorL	= 6;
 	
@@ -38,32 +38,32 @@ public class RobotMap {
 	public static final int intakeLimitSensorR        = 9;
 	public static final int intakeLimitSensorL        = 10;
 	
-	public static final int compressorPressureSwitch = 14;
+	public static final int compressorPressureSwitch = 10;
 
 	//Relay Output Channels///////////////////////////////////////////
-	public static final int compressorPower = 1;
-	public static final int teamDiscLight   = 2;
-	public static final int intake          = 3;
-	public static final int arduinoRelay1   = 5;
-	public static final int arduinoRelay2   = 6;
-	public static final int arduinoRelay3   = 7;
-	public static final int arduinoRelay4   = 8;
+//	public static final int compressorPower = 1;
+//	public static final int teamDiscLight   = 2;
+//	public static final int intake          = 3;
+//	public static final int arduinoRelay1   = 5;
+//	public static final int arduinoRelay2   = 6;
+//	public static final int arduinoRelay3   = 7;
+//	public static final int arduinoRelay4   = 8;
 	
 	//Solenoid Channels(third slot on cRio)///////////////////////////////////////////////
-	public static final int shooterRaise               = 1;
-	public static final int shooterLower               = 2;
+	public static final int shooterRaise               = 8;
+	public static final int shooterLower               = 7;
 	public static final int hangerEngage               = 3;
 	public static final int hangerDisengage            = 4;
 	public static final int hopperFire                 = 5;
 	public static final int hopperReload               = 6;
-	public static final int lightSaberRaise            = 7;
-	public static final int lightSaberLower            = 8;
+	public static final int lightSaberRaise            = 1;
+	public static final int lightSaberLower            = 2;
 	
 	//Solenoid Channels(fourth slot on cRio)/////////////////////////////////////////////////
-	public static final int intakeHopperExtend      = 1;
-	public static final int intakeHopperRetract     = 2;
-	public static final int intakeFloorloadExtend   = 3;
-	public static final int intakeFloorloadRetract  = 4;
+//	public static final int intakeHopperExtend      = 1;
+//	public static final int intakeHopperRetract     = 2;
+//	public static final int intakeFloorloadExtend   = 3;
+//	public static final int intakeFloorloadRetract  = 4;
 
 	//Analog Input Channels///////////////////////////////////////////
 //	public static final int accelerometer = 1;

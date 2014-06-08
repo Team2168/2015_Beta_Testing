@@ -10,11 +10,13 @@ package org.team2168.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PCMCompressor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.team2168.robot.commands.CommandBase;
 import org.team2168.robot.commands.Auto.AutoSequencer;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainTurn_Simple;
@@ -33,8 +35,6 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     Command armPositionInit;
     Command dashboard;
-
-    Compressor compressor;
     
     SendableChooser dashChooser;
 	static SendableChooser initialPositionChooser;
@@ -59,8 +59,8 @@ public class Robot extends IterativeRobot {
 	
 	//What to do in auto. after the discs are shot
 	public static final int SIT_STILL                       = 1, //Don't move after shooting
-			                FOUR_DISC_AUTO_FRONT_PYRAMID    = 2, //From center, shoot two & two under pyramid
-			                FIVE_DISC_AUTO_BACK_PYRAMID     = 3, //From center, shoot three & two under pyramid
+//			                FOUR_DISC_AUTO_FRONT_PYRAMID    = 2, //From center, shoot two & two under pyramid
+//			                FIVE_DISC_AUTO_BACK_PYRAMID     = 3, //From center, shoot three & two under pyramid
 	                        DEFEND_CENTER                   = 4, //Move to the center of the field and defend discs
 	                        TO_PROTECTED_LOADER             = 5, //Move to the protected human load station
 	                        TO_UNPROTECTED_LOADER           = 6; //Move to the unprotected human load station
@@ -70,8 +70,8 @@ public class Robot extends IterativeRobot {
                            discFired      = false,
                            shooterRaised  = false,
                            endGame        = false;
-    BitRelay lightsRelay1,
-             lightsRelay2;
+//    BitRelay lightsRelay1,
+//             lightsRelay2;
              //lightsRelay3,
              //lightsRelay4;
     
@@ -79,6 +79,7 @@ public class Robot extends IterativeRobot {
     private static boolean shootInAuto = true;
     private static boolean autoModeDataInitialized = false;
     
+	private static PCMCompressor m_pcm;
     
     /**
      * This method is run when the robot is first started up and should be
@@ -89,18 +90,19 @@ public class Robot extends IterativeRobot {
         CommandBase.init();
         
         //Start the compressor
-        compressor = new Compressor(RobotMap.compressorPressureSwitch, RobotMap.compressorPower);
-//        compressor.start();
+        m_pcm = new PCMCompressor();
+		m_pcm.setClosedLoopControl(true);
         
         //Initialize dashboard
         dashSelectInit();
         
     	//Put auto. mode data & selections onto the dashboard
         putAutoModeData();
+
         
         //Initialize relay ports for light strip states
-        lightsRelay1 = new BitRelay(RobotMap.arduinoRelay1);
-        lightsRelay2 = new BitRelay(RobotMap.arduinoRelay3);
+//        lightsRelay1 = new BitRelay(RobotMap.arduinoRelay1);
+//        lightsRelay2 = new BitRelay(RobotMap.arduinoRelay3);
         //lightsRelay3 = new BitRelay(RobotMap.arduinoRelay3);
         //lightsRelay4 = new BitRelay(RobotMap.arduinoRelay4);
         
@@ -165,8 +167,6 @@ public class Robot extends IterativeRobot {
         //start dashboard
         dashboard = (Command) dashChooser.getSelected();
         dashboard.start();
-        
-        compressor.start();
         
         setArduinoStatus();
     }
@@ -250,8 +250,8 @@ public class Robot extends IterativeRobot {
     		//Create a chooser for our destination position
     		afterShotChooser = new SendableChooser();
         	afterShotChooser.addDefault("Sit Still", new Integer(SIT_STILL));
-        	afterShotChooser.addObject("4 disc auto from the front (closer to the wall)", new Integer(FOUR_DISC_AUTO_FRONT_PYRAMID));
-        	afterShotChooser.addObject("5 disc auto from the back (farther from the wall)", new Integer(FIVE_DISC_AUTO_BACK_PYRAMID));
+//        	afterShotChooser.addObject("4 disc auto from the front (closer to the wall)", new Integer(FOUR_DISC_AUTO_FRONT_PYRAMID));
+//        	afterShotChooser.addObject("5 disc auto from the back (farther from the wall)", new Integer(FIVE_DISC_AUTO_BACK_PYRAMID));
         	afterShotChooser.addObject("Defend center discs", new Integer(DEFEND_CENTER));
         	afterShotChooser.addObject("Move to protected loader", new Integer(TO_PROTECTED_LOADER));
         	afterShotChooser.addObject("Move to un-protected loader", new Integer(TO_UNPROTECTED_LOADER));
@@ -359,10 +359,10 @@ public class Robot extends IterativeRobot {
     	//   1        Shooter up to speed
     	//   3        Disc fired
     	//   4        Endgame (end of match notification)
-    	lightsRelay1.setForward(shooterRaised);
-    	lightsRelay1.setReverse(shooterAtSpeed);
-    	lightsRelay2.setForward(discFired);
-    	lightsRelay2.setReverse(endGame);
+//    	lightsRelay1.setForward(shooterRaised);
+//    	lightsRelay1.setReverse(shooterAtSpeed);
+//    	lightsRelay2.setForward(discFired);
+//    	lightsRelay2.setReverse(endGame);
 
     	// BIT(S)     Meaning
     	// ------------------------------

@@ -3,27 +3,12 @@ package org.team2168.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.team2168.robot.commands.Presets.Preset_10pt_Hang;
-import org.team2168.robot.commands.Presets.Preset_AutoLoadIn;
-import org.team2168.robot.commands.Presets.Preset_DriveUnderPyramid;
-import org.team2168.robot.commands.Presets.Preset_FrontOfPyramid_3pt;
-import org.team2168.robot.commands.Presets.Preset_PreLoadPosition;
-import org.team2168.robot.commands.Presets.Preset_RearOfPyramid_3pt;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainStraight;
 import org.team2168.robot.commands.subSystems.Hanger.HangerDisengage;
 import org.team2168.robot.commands.subSystems.Hanger.HangerEngage;
 import org.team2168.robot.commands.subSystems.Hopper.HopperFire;
 import org.team2168.robot.commands.subSystems.Hopper.HopperReload;
 import org.team2168.robot.commands.subSystems.Hopper.ShootSingleDisc;
-import org.team2168.robot.commands.subSystems.Hopper.TeamDiscLightOff;
-import org.team2168.robot.commands.subSystems.Hopper.TeamDiscLightOn;
-import org.team2168.robot.commands.subSystems.Intake.DriveIntakeConstant;
-import org.team2168.robot.commands.subSystems.Intake.DriveIntakeTillFull;
-import org.team2168.robot.commands.subSystems.Intake.DriveLeftTillEmpty;
-import org.team2168.robot.commands.subSystems.Intake.DriveRightTillEmpty;
-import org.team2168.robot.commands.subSystems.Intake.IntakeHopperPosition;
-import org.team2168.robot.commands.subSystems.Intake.IntakeLoadPosition;
-import org.team2168.robot.commands.subSystems.Intake.IntakeStowPosition;
 import org.team2168.robot.commands.subSystems.LightSaber.LightSaberExtend;
 import org.team2168.robot.commands.subSystems.LightSaber.LightSaberStow;
 import org.team2168.robot.commands.subSystems.ShooterAngle.ShooterAngleExtend;
@@ -37,14 +22,14 @@ import org.team2168.robot.utils.JoystickAnalogButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public static final boolean rInvert       = true;  //for R driveTrain
-	public static final boolean lInvert       = false; //for L driveTrain
-	public static final boolean ainvert       = true;  //for arm left motor
+	public static final boolean rInvert       = false;  //for R driveTrain
+	public static final boolean lInvert       = true; //for L driveTrain
+	//public static final boolean ainvert       = true;  //for arm left motor
 	public static final boolean sFwdInvert    = false; //for shooter
 	public static final boolean sAftInvert    = false; //for shooter
-	public static final boolean hInvert       = true;  //for hopper
-	public static final boolean lIntakeInvert = true;  //for left intake motor
-	public static final boolean rIntakeInvert = false;  //for right intake motor
+	//public static final boolean hInvert       = true;  //for hopper
+	//public static final boolean lIntakeInvert = true;  //for left intake motor
+	//public static final boolean rIntakeInvert = false;  //for right intake motor
 	
 	public static final int     rightJoyAxis = 5;
 	public static final int     leftJoyAxis  = 2;
@@ -246,35 +231,15 @@ public class OI {
 		//DRIVER BUTTON MAP//
 		driveButtonB.whenPressed(new HangerDisengage()); //disengage the hanger
 		driveButtonA.whenPressed(new HangerEngage());    //engage the hanger
-		driveButtonX.whenPressed(new TeamDiscLightOn());
-		driveButtonX.whenReleased(new TeamDiscLightOff());
+//		driveButtonX.whenPressed(new TeamDiscLightOn());
+//		driveButtonX.whenReleased(new TeamDiscLightOff());
 		driveButtonRightBumper.whenPressed(new LightSaberExtend());
 		driveButtonLeftBumper.whenPressed(new LightSaberStow());
 		
 		//OPERATOR BUTTON MAP//
-		operatorButtonLeftBumper.whenPressed(new ShooterAngleStow());
-		operatorButtonRightBumper.whenPressed(new Preset_10pt_Hang());
-		operatorButtonY.whenPressed(new IntakeStowPosition());		
-		operatorButtonX.whenPressed(new Preset_PreLoadPosition());
-		operatorButtonB.whenPressed(new Preset_DriveUnderPyramid());
+		operatorButtonLeftBumper.whenPressed(new ShooterAngleExtend());
+		operatorButtonRightBumper.whenPressed(new ShooterAngleStow());
 		operatorButtonA.whenPressed(new ShootSingleDisc()); //shoot one frisbee at a time
-		operatorButtonLeftStick.whenPressed(new Preset_AutoLoadIn());
-		// set the shooter speed and angle for "back" of the pyramid shots (closer to the wall)
-		operatorDPadR.whenPressed(new Preset_RearOfPyramid_3pt());
-		// set the shooter speed and angle for "front" of the pyramid shots (farther from the wall)
-		operatorDPadL.whenPressed(new Preset_FrontOfPyramid_3pt());
-		
-		
-		//Test Button Map//
-		testButtonLeftBumper.whenPressed(new DriveIntakeConstant(0.0,0.0));
-		testButtonRightBumper.whenPressed(new DriveIntakeTillFull());		
-		testButtonX.whenPressed(new IntakeStowPosition());
-		testButtonB.whenPressed(new IntakeHopperPosition());
-		testButtonA.whenPressed(new IntakeLoadPosition());
-		testButtonY.whenPressed(new DriveIntakeConstant(0.0, 1.0));
-//		testButtonLeftStick.whenPressed(new DriveLeftTillEmpty());
-//		testDPadR.whenPressed(new FiveDisc_3pt());
-//		testDPadL.whenPressed();
 	}
 	
 	

@@ -1,7 +1,7 @@
 package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainStraight;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainTurn_Simple;
 
@@ -23,24 +23,24 @@ public class DriveToFieldCenter extends CommandGroup {
 	 * Drive to the center of the field.
 	 */
 	public DriveToFieldCenter() {
-		int position = CommandBaseRobot.getInitialPosition();
+		int position = Robot.getInitialPosition();
 		
 		//Do different things depending on where we started from
 		switch(position) {
 //TODO: TEST
-			case CommandBaseRobot.RIGHT:
+			case Robot.RIGHT:
 				driveDistance1 =  -2.0; //Drive backwards (ft)
 				rotateAngle1   =  30.0; //Rotate clockwise (deg.)
 				driveDistance2 =  -6.5; //Drive backwards (ft)
 				rotateAngle2   =   0.0; //rotate clockwise (deg.)
 				break;
-			case CommandBaseRobot.CENTER:
+			case Robot.CENTER:
 				driveDistance1 =  -7.0; //Drive backwards (ft)
 				rotateAngle1   =   0.0; //Rotate clockwise (deg.)
 				driveDistance2 =   0.0; //Drive backwards (ft)
 				rotateAngle2   =   0.0; //rotate clockwise (deg.)
 				break;
-			case CommandBaseRobot.LEFT:
+			case Robot.LEFT:
 				driveDistance1 =  -2.0; //Drive backwards (ft)
 				rotateAngle1   = -36.0; //Rotate counter-clockwise (deg.)
 				driveDistance2 =  -8.0; //Drive backwards (ft)

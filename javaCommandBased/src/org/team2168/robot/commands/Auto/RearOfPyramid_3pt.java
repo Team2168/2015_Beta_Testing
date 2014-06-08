@@ -1,7 +1,7 @@
 package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.Sleep;
 import org.team2168.robot.commands.subSystems.Hopper.ShootSingleDisc;
 import org.team2168.robot.commands.subSystems.ShooterAngle.ShooterAngleStow;
@@ -17,9 +17,9 @@ import org.team2168.robot.commands.subSystems.ShooterWheel.PID_ShooterPause;
 public class RearOfPyramid_3pt extends CommandGroup {
 
 	public RearOfPyramid_3pt() {
-		this(CommandBaseRobot.getDiscDelay(1),
-             CommandBaseRobot.getDiscDelay(2),
-             CommandBaseRobot.getDiscDelay(3));
+		this(Robot.getDiscDelay(1),
+             Robot.getDiscDelay(2),
+             Robot.getDiscDelay(3));
 	}
 
 	public RearOfPyramid_3pt(double firstDiscTime, double secondDiscTime, double thirdDiscTime) {

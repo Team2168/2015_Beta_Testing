@@ -1,7 +1,7 @@
 package org.team2168.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainStraight;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainTurn_Simple;
 
@@ -25,11 +25,11 @@ public class DriveToProtectedLoader extends CommandGroup {
 	 * Drive to the position robot near the protected loading station.
 	 */
 	public DriveToProtectedLoader() {
-		int position = CommandBaseRobot.getInitialPosition();
+		int position = Robot.getInitialPosition();
 		
 		//Do different things depending on where we started from
 		switch(position) {
-			case CommandBaseRobot.RIGHT:
+			case Robot.RIGHT:
 //TODO: Test
 				driveDistance1 = -4.0; //Drive straight backwards to line (ft)
 				rotateAngle1   = -140.0; //Rotate counter clockwise to face loading station(deg.)
@@ -39,7 +39,7 @@ public class DriveToProtectedLoader extends CommandGroup {
 				rotateAngle3   =   0.0;
 				break;
 //TODO: Test
-			case CommandBaseRobot.CENTER:
+			case Robot.CENTER:
 				driveDistance1 = -3.5; //Drive backwards (ft)
 				rotateAngle1   = 25.0; //Rotate clockwise to face loader wall
 				driveDistance2 = 7.0; //Drive forwards across field (ft)
@@ -47,7 +47,7 @@ public class DriveToProtectedLoader extends CommandGroup {
 				driveDistance3 = 0.0;
 				rotateAngle3   =   0.0;
 				break;
-			case CommandBaseRobot.LEFT:
+			case Robot.LEFT:
 				driveDistance1 =  -3.5; //Drive backwards (ft)
 				rotateAngle1   =  35.0; //Rotate to face wall on loader side
 				driveDistance2 =  14.0; //Drive forwards across field

@@ -1,6 +1,6 @@
 package org.team2168.robot.commands.subSystems.ShooterWheel;
 
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.CommandBase;
 
 public class PID_ShooterAtSpeed extends CommandBase

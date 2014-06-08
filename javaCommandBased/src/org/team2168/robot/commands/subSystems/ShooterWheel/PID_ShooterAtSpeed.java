@@ -51,14 +51,14 @@ public class PID_ShooterAtSpeed extends CommandBase
 				else
 				{
 					//came across a value in the array that was not in range
-					CommandBaseRobot.setShooterAtSpeed(false);
+					Robot.setShooterAtSpeed(false);
 					return false; //terminate because we know the array is not filled
 				}
 			}
 			
 			//if we get here then the array was filled with atSpeed.lenght-1 values that were
 			//in range so set the atSpeed boolean and return true.
-			CommandBaseRobot.setShooterAtSpeed(true);
+			Robot.setShooterAtSpeed(true);
 			return true;
 
 	}

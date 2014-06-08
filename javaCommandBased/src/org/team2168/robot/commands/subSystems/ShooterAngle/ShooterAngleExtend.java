@@ -1,7 +1,7 @@
 
 package org.team2168.robot.commands.subSystems.ShooterAngle;
 
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.CommandBase;
 
 /**
@@ -29,7 +29,7 @@ public class ShooterAngleExtend extends CommandBase {
      */
     
 	protected void execute() {
-		CommandBaseRobot.setShooterRaised(true);
+		Robot.setShooterRaised(true);
     	shooterAngle.extend();
     	//extends the shooter solenoid 
     }

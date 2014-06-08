@@ -1,7 +1,7 @@
 
 package org.team2168.robot.commands.subSystems.ShooterAngle;
 
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.CommandBase;
 
 /**
@@ -23,7 +23,7 @@ public class ShooterAngleStow extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     
 	protected void execute() {
-		CommandBaseRobot.setShooterRaised(false);
+		Robot.setShooterRaised(false);
 		shooterAngle.stow();
     	//sets the shooter angle to stow position
     }

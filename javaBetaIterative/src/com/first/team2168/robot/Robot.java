@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PCMCompressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,10 +38,15 @@ public class Robot extends IterativeRobot {
 	Talon shooterRear;
 
 	// Shooter Double Solenoid
-	static Relay shooterFire;
-
+	//static Relay shooterFire;
+	static Solenoid shooterFire1;
+	static Solenoid shooterFire2;
+	
 	// Shooter Angle Solenoid
-	static Relay shooterAngle;
+	//static Relay shooterAngle;
+	static Solenoid shooterAngle1;
+	static Solenoid shooterAngle2;
+	
 	static Relay CompressorRelay;
 
 	// Switches
@@ -65,12 +73,17 @@ public class Robot extends IterativeRobot {
 	
 	static String cmdAngleShooter;
 	static String l_cmdAngleShooter;
+	static PCMCompressor m_pcm;
+	
+	static boolean fired;
 
+	static Relay r1;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
-	 */
+	 */	
+	
 	public void robotInit() {
 		
 		// Initialize joysticks
@@ -84,12 +97,15 @@ public class Robot extends IterativeRobot {
 		// initialize shooter talons
 		shooterFWD = new Talon(1);
 		shooterRear = new Talon(2);
-
+		
 		// initialize shooter angle
-		shooterAngle = new Relay(2, Direction.kBoth);
-		shooterFire = new Relay(3, Direction.kBoth);
+		shooterAngle1 = new Solenoid(7);
+		shooterAngle2 = new Solenoid(8);
+		
+		shooterFire1 = new Solenoid(6);
+		shooterFire2 = new Solenoid(5);
 
-		CompressorRelay = new Relay(4, Direction.kForward);
+		//CompressorRelay = new Relay(4, Direction.kForward);
 
 		// initialize compressor switch
 		CompressorSwitch = new DigitalInput(10);
@@ -106,6 +122,10 @@ public class Robot extends IterativeRobot {
 		cmdAngleShooter = "down";
 		l_cmdAngleShooter = "down";
 	
+		m_pcm = new PCMCompressor();
+		m_pcm.setClosedLoopControl(true);
+		
+		r1 = new Relay(1);
 		
 		
 	}
@@ -126,6 +146,7 @@ public class Robot extends IterativeRobot {
 		} else {
 			rightDrive.set(0.0);
 		}
+		
 		if(Math.abs(driver.getRawAxis(2)) > 0.28) {
 			leftDrive.set(-driver.getRawAxis(2));
 		} else {
@@ -133,22 +154,26 @@ public class Robot extends IterativeRobot {
 		}
 
 		if (operator.getRawButton(6)) {
-			shooterAngle.set(Value.kForward);
+			shooterAngle1.set(true);
+			shooterAngle2.set(false);
 			l_cmdAngleShooter = "kReverse";
 			cmdAngleShooter = "kForward";
 			
 		} else if (operator.getRawButton(5)) {
-			shooterAngle.set(Value.kReverse);
+			shooterAngle1.set(false);
+			shooterAngle2.set(true);
 			l_cmdAngleShooter = "kForward";
 			cmdAngleShooter = "kReverse";
 		}
 
 		if (operator.getRawButton(2)) {
-			shooterFire.set(Value.kForward);
+			shooterFire1.set(true);
+			shooterFire2.set(false);
 		} else if (operator.getRawButton(1)) {
-			shooterFire.set(Value.kReverse);
+			shooterFire1.set(false);
+			shooterFire2.set(true);
 		}
-
+		
 		//Shooter Wheel - Left stick
 		if(operator.getRawAxis(2) <= 0) {
 			shooterFWD.set(-operator.getRawAxis(2));
@@ -156,13 +181,25 @@ public class Robot extends IterativeRobot {
 		}
 		
 		
-		if (!CompressorSwitch.get()) {
-			CompressorRelay.set(Value.kOn);
-		} else {
-			CompressorRelay.set(Value.kOff);
+		//if (!CompressorSwitch.get()) {
+		//	CompressorRelay.set(Value.kOn);
+		//} else {
+		//	CompressorRelay.set(Value.kOff);
+		//}
+		
+		if (operator.getRawButton(3)) {
+			r1.set(Relay.Value.kForward);
+		} else if (operator.getRawButton(4)) {
+			r1.set(Relay.Value.kOff);
 		}
 		
-		 
+		if(isOperatorControl()){
+			if(!m_pcm.getPressureSwitchValue()){
+				System.out.println("Low pressure - turning on the compressor");
+			}
+			System.out.println("The compressor using " + (m_pcm.getCompressorCurrent())/1000 + " Amps");
+		}		
+
 	}
 
 	/**
@@ -190,4 +227,7 @@ public class Robot extends IterativeRobot {
 		AI4 = new AnalogChannel(4);		
 	
 	}
+	
+	
+	
 }

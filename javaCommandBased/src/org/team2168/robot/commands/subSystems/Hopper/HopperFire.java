@@ -1,7 +1,7 @@
 
 package org.team2168.robot.commands.subSystems.Hopper;
 
-import org.team2168.robot.CommandBaseRobot;
+import org.team2168.robot.Robot;
 import org.team2168.robot.commands.CommandBase;
 
 /**
@@ -24,7 +24,7 @@ public class HopperFire extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     
 	protected void execute() {
-		CommandBaseRobot.setDiscFired(true);
+		Robot.setDiscFired(true);
 		hopper.fireDisc();
     	//actuate the piston to fire which feeds a frisbee into the shooterwheels
     }

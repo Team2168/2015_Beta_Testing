@@ -1,4 +1,4 @@
-package frc2168_2013.PIDController.Sensors;
+package org.team2168.robot.PIDController.Sensors;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ import javax.microedition.io.Connector;
 import javax.microedition.io.ServerSocketConnection;
 import javax.microedition.io.StreamConnection;
 
-import frc2168_2013.PIDController.TCPStream.SplitStrings;
+import org.team2168.robot.PIDController.TCPStream.SplitStrings;
 
 
 

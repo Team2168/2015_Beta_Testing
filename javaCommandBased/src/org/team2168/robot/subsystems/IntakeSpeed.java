@@ -1,11 +1,11 @@
-package frc2168_2013.subsystems;
+package org.team2168.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc2168_2013.OI;
-import frc2168_2013.RobotMap;
-import frc2168_2013.commands.subSystems.Intake.DriveIntakeConstant;
+import org.team2168.robot.OI;
+import org.team2168.robot.RobotMap;
+import org.team2168.robot.commands.subSystems.Intake.DriveIntakeConstant;
 
 public class IntakeSpeed extends Subsystem {		
 

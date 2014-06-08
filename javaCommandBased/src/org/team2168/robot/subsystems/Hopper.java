@@ -1,9 +1,9 @@
-package frc2168_2013.subsystems;
+package org.team2168.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc2168_2013.RobotMap;
+import org.team2168.robot.RobotMap;
 
 
 public class Hopper extends Subsystem {

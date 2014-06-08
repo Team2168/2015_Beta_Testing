@@ -1,8 +1,8 @@
-package frc2168_2013.dashboard;
+package org.team2168.robot.dashboard;
 
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc2168_2013.commands.CommandBase;
+import org.team2168.robot.commands.CommandBase;
 
 public class CompetitionDashboard extends CommandBase
 {

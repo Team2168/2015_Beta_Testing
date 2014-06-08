@@ -1,14 +1,14 @@
-package frc2168_2013.subsystems;
+package org.team2168.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc2168_2013.OI;
-import frc2168_2013.RobotMap;
-import frc2168_2013.PIDController.Controller.PIDSpeed;
-import frc2168_2013.PIDController.Sensors.AverageEncoder;
-import frc2168_2013.PIDController.TCPStream.TCPsocketSender;
-import frc2168_2013.commands.subSystems.ShooterWheel.DriveShooterWithJoystick;
+import org.team2168.robot.OI;
+import org.team2168.robot.RobotMap;
+import org.team2168.robot.PIDController.Controller.PIDSpeed;
+import org.team2168.robot.PIDController.Sensors.AverageEncoder;
+import org.team2168.robot.PIDController.TCPStream.TCPsocketSender;
+import org.team2168.robot.commands.subSystems.ShooterWheel.DriveShooterWithJoystick;
 
 public class ShooterWheel extends Subsystem {
 	Talon shooterTalonAft;

@@ -28,7 +28,7 @@ import org.team2168.robot.utils.BitRelay;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class CommandBaseRobot extends IterativeRobot {
+public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     Command armPositionInit;

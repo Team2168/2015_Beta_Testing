@@ -1,14 +1,15 @@
 package org.team2168.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
+import org.team2168.robot.utils.AlphaDoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team2168.robot.RobotMap;
 
 public class ShooterAngle extends Subsystem {
-	DoubleSolenoid actuator;
+	AlphaDoubleSolenoid actuator;
 	
 	public ShooterAngle() {
-		actuator = new DoubleSolenoid(RobotMap.shooterRaise,
+		actuator = new AlphaDoubleSolenoid(RobotMap.shooterRaise,
 		                              RobotMap.shooterLower);
 	}
 	
@@ -23,13 +24,13 @@ public class ShooterAngle extends Subsystem {
 	 * Lower the shooter, for further shots
 	 */
 	public void stow() {
-		actuator.set(DoubleSolenoid.Value.kReverse);
+		actuator.set(AlphaDoubleSolenoid.Value.kReverse);
 	}
 	
 	/**
 	 * Raise the shooter, for closer shots
 	 */
 	public void extend() {
-		actuator.set(DoubleSolenoid.Value.kForward);
+		actuator.set(AlphaDoubleSolenoid.Value.kForward);
 	}
 }

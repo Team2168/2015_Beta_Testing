@@ -1,6 +1,5 @@
 package org.team2168.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
@@ -68,7 +67,7 @@ public class Drivetrain extends Subsystem {
     	rightEncoder.setPosReturnType(AverageEncoder.PositionReturnType.INCH);
     	rightEncoder.setMaxPeriod(RobotMap.driveEncoderMinPeriod);//min period before reported stopped
     	rightEncoder.setMinRate(RobotMap.driveEncoderMinRate);//min rate before reported stopped
-    	rightEncoder.start();
+
     	
     	leftEncoder = new AverageEncoder(RobotMap.leftDriveEncoderChannelA,
     			RobotMap.leftDriveEncoderChannelB, RobotMap.driveEncoderPulsePerRot,
@@ -78,7 +77,7 @@ public class Drivetrain extends Subsystem {
     	leftEncoder.setPosReturnType(AverageEncoder.PositionReturnType.INCH);
     	leftEncoder.setMaxPeriod(RobotMap.driveEncoderMinPeriod);//min period before reported stopped
     	leftEncoder.setMinRate(RobotMap.driveEncoderMinRate);//min rate before reported stopped
-    	leftEncoder.start();
+
     	
     	//Spawn new PID Controller
     	rightSpeedController = new PIDSpeed("RightSpeedController", RobotMap.driveTrainRightSpeedP,

@@ -28,24 +28,7 @@ public class BitRelay extends Relay {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param moduleNumber
-	 * @param channel
-	 */
-	public BitRelay(int moduleNumber, int channel) {
-		super(moduleNumber, channel);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param moduleNumber
-	 * @param channel
-	 * @param direction
-	 */
-	public BitRelay(int moduleNumber, int channel, Direction direction) {
-		super(moduleNumber, channel, direction);
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	/**
 	 * Set the state of the forward channel.

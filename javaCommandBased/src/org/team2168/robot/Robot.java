@@ -10,7 +10,6 @@ package org.team2168.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PCMCompressor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -21,7 +20,7 @@ import org.team2168.robot.commands.CommandBase;
 import org.team2168.robot.commands.Auto.AutoSequencer;
 import org.team2168.robot.commands.subSystems.DriveTrain.DriveDrivetrainTurn_Simple;
 import org.team2168.robot.dashboard.CompetitionDashboard;
-import org.team2168.robot.utils.BitRelay;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -79,7 +78,7 @@ public class Robot extends IterativeRobot {
     private static boolean shootInAuto = true;
     private static boolean autoModeDataInitialized = false;
     
-	private static PCMCompressor m_pcm;
+	private static Compressor m_pcm;
     
     /**
      * This method is run when the robot is first started up and should be
@@ -90,7 +89,7 @@ public class Robot extends IterativeRobot {
         CommandBase.init();
         
         //Start the compressor
-        m_pcm = new PCMCompressor();
+        m_pcm = new Compressor();
 		m_pcm.setClosedLoopControl(true);
         
         //Initialize dashboard

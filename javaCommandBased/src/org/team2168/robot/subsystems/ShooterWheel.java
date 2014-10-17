@@ -39,14 +39,14 @@ public class ShooterWheel extends Subsystem {
 		shooterWheelEncoderAft.setMinRate(RobotMap.shooterEncoderMinRate);
 		shooterWheelEncoderAft.setMaxPeriod(RobotMap.shooterEncoderMinPeriod);
 		//shooterWheelEncoderAft.setSamplesToAverage((byte) 127);
-		shooterWheelEncoderAft.start();
+
 
 		//Set Encoder Parameters
 		shooterWheelEncoderFwd = new AverageEncoder(RobotMap.shooterEncoderFwdChannelA, RobotMap.shooterEncoderFwdChannelB, RobotMap.shooterEncoderPulsePerRot,RobotMap.shooterEncoderDistPerTick,RobotMap.shooterEncoderReverse, RobotMap.shooterEncodingType, RobotMap.shooterSpeedReturnType, RobotMap.shooterPosReturnType,RobotMap.shooterAvgEncoderVal);
 		shooterWheelEncoderFwd.setMinRate(RobotMap.shooterEncoderMinRate);
 		shooterWheelEncoderFwd.setMaxPeriod(RobotMap.shooterEncoderMinPeriod);
 		//shooterWheelEncoderFwd.setSamplesToAverage((byte) 127);
-		shooterWheelEncoderFwd.start();
+
 		
 		//set controllers		
 		shooterWheelSpeedControllerAft = new PIDSpeed("ShooterSpeedControllerAft", RobotMap.shooterSpeedP, RobotMap.shooterSpeedI, RobotMap.shooterSpeedD, shooterWheelEncoderAft, RobotMap.shooterPIDPeriod);

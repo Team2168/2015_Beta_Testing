@@ -150,9 +150,7 @@ public class LinearizedVictor extends Victor {
 		super(channel);
 	}
 
-	public LinearizedVictor(int slot, int channel) {
-		super(slot, channel);
-	}
+
 
     /**
      * This method acts as a middle man between the input and the Victor class'
